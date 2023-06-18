@@ -1,0 +1,51 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main {
+    flex: 1;
+    overflow: hidden;
+}
+
+.products-container,
+.products-row,
+.products-list {
+    height: 100%;
+}
+
+.products-list {
+    overflow: auto;
+}
+
+.btn-check:checked+.btn {
+    outline: 4px solid lightgreen;
+    background-color: transparent;
+}
+
+.product img {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    object-fit: contain;
+}
+
+.card {
+    overflow: hidden;
+}
+
+.product-header {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product-title {
+    flex: 1;
+}
+.product-controls {
+    flex-shrink: 0;
+}

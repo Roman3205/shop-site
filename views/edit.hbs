@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <span class="fs-4">Shop</span>
+            </a>
+
+            <div>
+                <a href="/my" class="btn btn-outline-dark active">Мои объявления</a>
+            </div>
+        </header>
+    </div>
+
+    <main>
+        <div class="container products-container">
+            <div class="row g-3 products-row">
+
+                {{!-- Список товаров --}}
+                <div class="col-12 products-list">
+
+                    <div class="product card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{product.image}}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        Редактор объявления: {{product.title}}
+                                    </h5>
+
+                                    <form action="/edit?id={{product._id}}" method="POST">
+                                        {{!-- Название --}}
+                                        <div class="mb-3">
+                                            <input name="title" type="text" class="form-control"
+                                                placeholder="Название товара" value="{{product.title}}">
+                                        </div>
+
+                                        {{!-- Категория --}}
+                                        <select name="category" class="form-select mb-3">
+                                            {{{options}}} 
+                                        </select>
+
+                                        {{!-- Описание --}}
+                                        <div class="mb-3">
+                                            <textarea name="description" class="form-control"
+                                                placeholder="Описание">{{product.description}}</textarea>
+                                        </div>
+
+
+                                        {{!-- Цена --}}
+                                        <div class="mb-3">
+                                            <input name="price" type="number" class="form-control" placeholder="Цена"
+                                                value="{{product.price}}">
+                                        </div>
+
+                                        {{!-- Изображение --}}
+                                        <div class="mb-3">
+                                            <input name="image" type="text" class="form-control"
+                                                placeholder="Ссылка на изображение" value="{{product.image}}">
+                                        </div>
+
+                                        {{!-- БУ --}}
+                                        <div class="form-check mb-3">
+                                            <input name="asNew" class="form-check-input" type="checkbox" id="asNew"
+                                                {{#if product.asNew}}checked{{/if}}>
+                                            <label class="form-check-label" for="asNew">
+                                                Как новенький
+                                            </label>
+                                        </div>
+
+                                        {{!-- Кнопка Опубликовать --}}
+                                        <div class="d-flex justify-content-end mb-3">
+                                            <button class="btn btn-primary">Сохранить</button>
+                                        </div>
+
+                                        {{!-- Сообщения --}}
+                                        {{#if error}}
+                                        <div class="alert alert-danger">Произошла ошибка, попробуйте ещё раз</div>
+                                        {{/if}}
+                                        {{#if success}}
+                                        <div class="alert alert-primary">Объявление изменено</div>
+                                        {{/if}}
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
